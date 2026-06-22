@@ -7,12 +7,12 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	testAdditionalProperties "github.com/atombender/go-jsonschema/tests/data/core/additionalProperties"
-	testAllOf "github.com/atombender/go-jsonschema/tests/data/core/allOf"
-	testAnyOf "github.com/atombender/go-jsonschema/tests/data/core/anyOf"
-	test "github.com/atombender/go-jsonschema/tests/data/extraImports/gopkgYAMLv3"
-	testUseNumber "github.com/atombender/go-jsonschema/tests/data/useNumber"
-	testValudationRequiredFields "github.com/atombender/go-jsonschema/tests/data/validation/requiredFields"
+	testAdditionalProperties "github.com/CognexVisionSoftware/go-jsonschema/tests/data/core/additionalProperties"
+	testAllOf "github.com/CognexVisionSoftware/go-jsonschema/tests/data/core/allOf"
+	testAnyOf "github.com/CognexVisionSoftware/go-jsonschema/tests/data/core/anyOf"
+	test "github.com/CognexVisionSoftware/go-jsonschema/tests/data/extraImports/gopkgYAMLv3"
+	testUseNumber "github.com/CognexVisionSoftware/go-jsonschema/tests/data/useNumber"
+	testValudationRequiredFields "github.com/CognexVisionSoftware/go-jsonschema/tests/data/validation/requiredFields"
 )
 
 func TestJsonUnmarshalValidation(t *testing.T) {
@@ -454,6 +454,7 @@ func TestJsonUnmarshalUseNumber(t *testing.T) {
 		},
 	}
 	for _, tC := range testCases {
+		tC := tC
 		t.Run(tC.desc, func(t *testing.T) {
 			t.Parallel()
 

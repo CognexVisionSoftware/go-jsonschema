@@ -5,7 +5,7 @@ import (
 	"math"
 	"strings"
 
-	"github.com/atombender/go-jsonschema/pkg/codegen"
+	"github.com/CognexVisionSoftware/go-jsonschema/pkg/codegen"
 )
 
 const (
@@ -81,6 +81,7 @@ func (jf *jsonFormatter) generate(
 			out.Printlnf("decoder := json.NewDecoder(bytes.NewReader(value))")
 			out.Printlnf("decoder.UseNumber()")
 			out.Printlnf("if err := decoder.Decode(&%s); err != nil { return err }", varNamePlainStruct)
+			out.Printlnf("if decoder.More() { return fmt.Errorf(\"unexpected trailing data after JSON value\") }")
 		} else {
 			out.Printlnf("if err := %s.Unmarshal(value, &%s); err != nil { return err }",
 				formatJSON, varNamePlainStruct)
@@ -181,6 +182,7 @@ func (jf *jsonFormatter) addImport(out *codegen.File, declType *codegen.TypeDecl
 
 	if jf.useNumber && declType.TypeContainsNumberOrInterface() {
 		out.Package.AddImport("bytes", "")
+		out.Package.AddImport("fmt", "")
 	}
 
 	if structType, ok := declType.Type.(*codegen.StructType); ok {

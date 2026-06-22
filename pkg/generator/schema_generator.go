@@ -8,9 +8,9 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 
-	"github.com/atombender/go-jsonschema/pkg/cmputil"
-	"github.com/atombender/go-jsonschema/pkg/codegen"
-	"github.com/atombender/go-jsonschema/pkg/schemas"
+	"github.com/CognexVisionSoftware/go-jsonschema/pkg/cmputil"
+	"github.com/CognexVisionSoftware/go-jsonschema/pkg/codegen"
+	"github.com/CognexVisionSoftware/go-jsonschema/pkg/schemas"
 )
 
 var (
@@ -1390,6 +1390,14 @@ func (g *schemaGenerator) generateEnumType(
 
 	g.output.declsByName[enumDecl.Name] = &enumDecl
 	g.output.declsBySchema[t] = &enumDecl
+
+	// The generated enum type may reference json.Number (when UseNumber is
+	// enabled) regardless of whether unmarshal methods are emitted, so ensure
+	// the encoding/json import is added even in OnlyModels mode where the
+	// formatters' addImport calls below are skipped.
+	if enumDecl.TypeContainsNumberOrInterface() {
+		g.output.file.Package.AddImport("encoding/json", "")
+	}
 
 	if !g.config.OnlyModels {
 		valueConstant := &codegen.Var{

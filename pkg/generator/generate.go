@@ -7,9 +7,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/atombender/go-jsonschema/internal/x/text"
-	"github.com/atombender/go-jsonschema/pkg/codegen"
-	"github.com/atombender/go-jsonschema/pkg/schemas"
+	"github.com/CognexVisionSoftware/go-jsonschema/internal/x/text"
+	"github.com/CognexVisionSoftware/go-jsonschema/pkg/codegen"
+	"github.com/CognexVisionSoftware/go-jsonschema/pkg/schemas"
 )
 
 const (
