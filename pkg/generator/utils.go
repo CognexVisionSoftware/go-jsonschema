@@ -3,8 +3,8 @@ package generator
 import (
 	"sort"
 
-	"github.com/atombender/go-jsonschema/pkg/codegen"
-	"github.com/atombender/go-jsonschema/pkg/schemas"
+	"github.com/CognexVisionSoftware/go-jsonschema/pkg/codegen"
+	"github.com/CognexVisionSoftware/go-jsonschema/pkg/schemas"
 )
 
 const additionalProperties = "AdditionalProperties"

@@ -1,7 +1,7 @@
 package generator
 
 import (
-	"github.com/atombender/go-jsonschema/pkg/codegen"
+	"github.com/CognexVisionSoftware/go-jsonschema/pkg/codegen"
 )
 
 type formatter interface {
